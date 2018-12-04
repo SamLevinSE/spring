@@ -10,12 +10,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 public class TopicController {
 
-    private final TopicService topicService;
-
     @Autowired
-    public TopicController(TopicService topicService) {
-        this.topicService = topicService;
-    }
+    private TopicService topicService;
 
     @RequestMapping("/topics")
     public List<Topic> getAllTopics() {
@@ -34,7 +30,7 @@ public class TopicController {
 
     @RequestMapping(method = PUT, value = "/topics/{id}")
     public void updateTopic(@PathVariable String id, @RequestBody Topic topic) {
-        topicService.updateTopic(id, topic);
+        topicService.updateTopic(topic);
     }
 
     @RequestMapping(method = DELETE, value = "/topics/{id}")
